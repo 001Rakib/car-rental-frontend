@@ -5,6 +5,7 @@ export const baseApi = createApi({
   reducerPath: "baseApi",
   baseQuery: fetchBaseQuery({
     baseUrl: "https://car-rent-server-theta.vercel.app/api",
+    credentials: "include",
   }),
   endpoints: () => ({}),
 });
