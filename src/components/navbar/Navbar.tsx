@@ -7,8 +7,17 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
+import { useAppDispatch, useAppSelector } from "@/redux/hook";
+import { logout } from "@/redux/feature/auth/authSlice";
 
 const Navbar = () => {
+  const { user } = useAppSelector((state) => state.auth);
+  const dispatch = useAppDispatch();
+
+  const handleLogout = () => {
+    dispatch(logout());
+  };
+
   return (
     <div className="bg-blue-500 py-4 text-white">
       {/* navbar for large and medium device */}
@@ -69,9 +78,17 @@ const Navbar = () => {
             About Us
           </NavLink>
         </div>
-        <NavLink to={"/login"}>
-          <Button className="bg-blue-700">Login</Button>
-        </NavLink>
+        <div>
+          {user ? (
+            <Button onClick={handleLogout} className="bg-blue-700">
+              Logout
+            </Button>
+          ) : (
+            <NavLink to={"/login"}>
+              <Button className="bg-blue-700">Login</Button>
+            </NavLink>
+          )}
+        </div>
       </div>
       {/* navbar for mobile devices */}
       <div className="flex justify-between px-4 items-center md:hidden">
@@ -139,9 +156,17 @@ const Navbar = () => {
           </NavLink>
         </div>
         <div>
-          <NavLink to={"/login"}>
-            <Button className="bg-blue-700">Login</Button>
-          </NavLink>
+          <div>
+            {user ? (
+              <Button onClick={handleLogout} className="bg-blue-700">
+                Logout
+              </Button>
+            ) : (
+              <NavLink to={"/login"}>
+                <Button className="bg-blue-700">Login</Button>
+              </NavLink>
+            )}
+          </div>
         </div>
       </div>
     </div>
