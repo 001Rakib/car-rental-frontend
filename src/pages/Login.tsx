@@ -13,7 +13,7 @@ const Login = () => {
   const { register, handleSubmit } = useForm({
     defaultValues: { email: "user@example.com", password: "password123" },
   });
-  const [login] = useLoginMutation();
+  const [login, { error }] = useLoginMutation();
 
   const handleLogin: SubmitHandler<FieldValues> = async (data) => {
     const res = await login(data).unwrap();
@@ -33,6 +33,11 @@ const Login = () => {
               <p className="text-balance text-muted-foreground">
                 Enter your email below to login to your account
               </p>
+              {error ? (
+                <p className="text-red-500 font-xs">{error.data.message}</p>
+              ) : (
+                ""
+              )}
             </div>
             <div className="grid gap-4">
               <div className="grid gap-2">
@@ -48,6 +53,12 @@ const Login = () => {
               <div className="grid gap-2">
                 <div className="flex items-center">
                   <label htmlFor="password">Password</label>
+                  <Link
+                    to={"/forgot-password"}
+                    className="ml-auto inline-block text-sm underline"
+                  >
+                    Forgot your password?
+                  </Link>
                 </div>
                 <Input
                   id="password"
