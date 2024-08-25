@@ -88,12 +88,12 @@ const Navbar = () => {
         </div>
         <div>
           {user ? (
-            <Button onClick={handleLogout} className="bg-orange-700">
+            <Button onClick={handleLogout} className="bg-orange-200 text-black">
               Logout
             </Button>
           ) : (
             <NavLink to={"/login"}>
-              <Button className="bg-orange-700">Login</Button>
+              <Button className="bg-orange-200 text-black">Login</Button>
             </NavLink>
           )}
         </div>
@@ -167,12 +167,15 @@ const Navbar = () => {
         <div>
           <div>
             {user ? (
-              <Button onClick={handleLogout} className="bg-orange-700">
+              <Button
+                onClick={handleLogout}
+                className="bg-orange-200 text-black"
+              >
                 Logout
               </Button>
             ) : (
               <NavLink to={"/login"}>
-                <Button className="bg-orange-700">Login</Button>
+                <Button className="bg-orange-200 text-black">Login</Button>
               </NavLink>
             )}
           </div>

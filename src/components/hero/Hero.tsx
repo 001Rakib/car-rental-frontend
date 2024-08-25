@@ -17,9 +17,10 @@ const Hero = () => {
           <div className="flex flex-col justify-center space-y-4">
             <div className="space-y-2">
               <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
-                Find Your Perfect Ride, Anytime, Anywhere
+                Find Your <span className="text-orange-500">Perfect Ride</span>,
+                Anytime, Anywhere
               </h1>
-              <p className="max-w-[600px] text-slate-600 md:text-xl">
+              <p className="max-w-[600px] text-slate-600 md:text-xl py-5">
                 Whether it's a weekend getaway or a business trip, we've got the
                 perfect car for every journey. Book now and hit the road!
               </p>
