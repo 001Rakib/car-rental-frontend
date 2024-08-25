@@ -19,7 +19,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="bg-blue-500 py-4 text-white">
+    <div className="bg-orange-500 py-4 text-white">
       {/* navbar for large and medium device */}
       <div className="hidden  md:flex justify-between max-w-screen-xl mx-auto items-center font-inter px-4">
         <NavLink to={"/"}>
@@ -47,7 +47,7 @@ const Navbar = () => {
         <div className="flex gap-8 font-inter">
           <NavLink
             className={({ isActive }) =>
-              isActive ? "bg-blue-200 text-black px-2 py-1 rounded-lg" : ""
+              isActive ? "bg-orange-200 text-black px-2 py-1 rounded-lg" : ""
             }
             to={"/"}
           >
@@ -55,23 +55,31 @@ const Navbar = () => {
           </NavLink>
           <NavLink
             className={({ isActive }) =>
-              isActive ? "bg-blue-200 text-black px-2 py-1 rounded-lg" : ""
+              isActive ? "bg-orange-200 text-black px-2 py-1 rounded-lg" : ""
             }
-            to={"/products"}
+            to={"/cars"}
           >
-            Products
+            Cars
+          </NavLink>
+          <NavLink
+            className={({ isActive }) =>
+              isActive ? "bg-orange-200 text-black px-2 py-1 rounded-lg" : ""
+            }
+            to={"/booking"}
+          >
+            Booking
           </NavLink>
           <NavLink
             className={({ isActive }) =>
               isActive ? "bg-blue-200 text-black px-2 py-1 rounded-lg" : ""
             }
-            to={"/product-management"}
+            to={"/contact"}
           >
-            Manage Products
+            Contact
           </NavLink>
           <NavLink
             className={({ isActive }) =>
-              isActive ? "bg-blue-200 text-black px-2 py-1 rounded-lg" : ""
+              isActive ? "bg-orange-200 text-black px-2 py-1 rounded-lg" : ""
             }
             to={"/about-us"}
           >
@@ -80,12 +88,12 @@ const Navbar = () => {
         </div>
         <div>
           {user ? (
-            <Button onClick={handleLogout} className="bg-blue-700">
+            <Button onClick={handleLogout} className="bg-orange-700">
               Logout
             </Button>
           ) : (
             <NavLink to={"/login"}>
-              <Button className="bg-blue-700">Login</Button>
+              <Button className="bg-orange-700">Login</Button>
             </NavLink>
           )}
         </div>
@@ -117,13 +125,14 @@ const Navbar = () => {
               <NavLink to={"/"}>
                 <DropdownMenuCheckboxItem>Home</DropdownMenuCheckboxItem>
               </NavLink>
-              <NavLink to={"/products"}>
-                <DropdownMenuCheckboxItem>Products</DropdownMenuCheckboxItem>
+              <NavLink to={"/cars"}>
+                <DropdownMenuCheckboxItem>Cars</DropdownMenuCheckboxItem>
               </NavLink>
-              <NavLink to={"/product-management"}>
-                <DropdownMenuCheckboxItem>
-                  Manage Products
-                </DropdownMenuCheckboxItem>
+              <NavLink to={"/booking"}>
+                <DropdownMenuCheckboxItem>Booking</DropdownMenuCheckboxItem>
+              </NavLink>
+              <NavLink to={"/contact"}>
+                <DropdownMenuCheckboxItem>Contact</DropdownMenuCheckboxItem>
               </NavLink>
               <NavLink to={"/about-us"}>
                 <DropdownMenuCheckboxItem>About Us</DropdownMenuCheckboxItem>
@@ -158,12 +167,12 @@ const Navbar = () => {
         <div>
           <div>
             {user ? (
-              <Button onClick={handleLogout} className="bg-blue-700">
+              <Button onClick={handleLogout} className="bg-orange-700">
                 Logout
               </Button>
             ) : (
               <NavLink to={"/login"}>
-                <Button className="bg-blue-700">Login</Button>
+                <Button className="bg-orange-700">Login</Button>
               </NavLink>
             )}
           </div>
