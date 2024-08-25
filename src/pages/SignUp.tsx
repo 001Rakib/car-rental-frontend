@@ -10,9 +10,10 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+import { useSignUpMutation } from "@/redux/feature/auth/authApi";
 
 const signUpSchema = z
   .object({
@@ -27,15 +28,18 @@ const signUpSchema = z
   });
 
 const SignUp = () => {
+  const navigate = useNavigate();
   const [checkbox, setCheckbox] = useState(false);
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({ resolver: zodResolver(signUpSchema) });
-  console.log(errors);
-  const handleSignUp: SubmitHandler<FieldValues> = (data) => {
-    console.log(data);
+  const [signup] = useSignUpMutation();
+  const handleSignUp: SubmitHandler<FieldValues> = async (data) => {
+    const res = await signup(data);
+    console.log(res);
+    navigate("/login");
   };
 
   return (
