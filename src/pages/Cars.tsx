@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { useGetAllCarsQuery } from "@/redux/feature/cars/car.api";
 import { Loader2 } from "lucide-react";
 
-type TCar = {
+export type TCar = {
   _id: string;
   name: string;
   description: string;
