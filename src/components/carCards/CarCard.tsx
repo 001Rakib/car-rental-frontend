@@ -20,9 +20,9 @@ type TCardProps = {
 const CarCard = ({ image, title, description, price, _id }: TCardProps) => {
   return (
     <div>
-      <Card className="">
+      <Card className="h-96">
         <CardContent className="pt-5">
-          <img className="rounded-md" src={image} alt="" />
+          <img className="rounded-md h-52 w-full" src={image} alt="" />
         </CardContent>
         <div className="flex justify-between">
           <CardHeader>

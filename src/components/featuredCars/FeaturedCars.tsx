@@ -15,9 +15,7 @@ const FeaturedCars = () => {
           {data?.data?.slice(0, 3).map((car: TCar) => (
             <CarCard
               key={car._id}
-              image={
-                "https://images.pexels.com/photos/3972755/pexels-photo-3972755.jpeg?cs=srgb&dl=pexels-garvin-st-villier-719266-3972755.jpg&fm=jpg"
-              }
+              image={car.image}
               title={car.name}
               description={car.description}
               price={car.pricePerHour}

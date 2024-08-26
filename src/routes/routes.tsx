@@ -1,6 +1,7 @@
 import App from "@/App";
 import CarDetails from "@/pages/CarDetails";
 import Cars from "@/pages/Cars";
+import Error from "@/pages/Error";
 import Home from "@/pages/Home";
 import Login from "@/pages/Login";
 import SignUp from "@/pages/SignUp";
@@ -10,6 +11,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+    errorElement: <Error />,
     children: [
       {
         path: "/",

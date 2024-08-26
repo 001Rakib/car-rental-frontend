@@ -8,6 +8,7 @@ export type TCar = {
   name: string;
   description: string;
   color: string;
+  image: string;
   isElectric: boolean;
   features: string[];
   pricePerHour: number;
@@ -29,19 +30,22 @@ const Cars = () => {
   }
 
   return (
-    <div className="grid grid-cols-3 gap-5 my-20 max-w-screen-xl mx-auto">
-      {data?.data?.map((car: TCar) => (
-        <CarCard
-          key={car._id}
-          image={
-            "https://images.pexels.com/photos/3972755/pexels-photo-3972755.jpeg?cs=srgb&dl=pexels-garvin-st-villier-719266-3972755.jpg&fm=jpg"
-          }
-          title={car.name}
-          description={car.description}
-          price={car.pricePerHour}
-          _id={car._id}
-        />
-      ))}
+    <div className="my-20 max-w-screen-xl mx-auto">
+      <h2 className="scroll-m-20 text-center text-orange-500 my-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0">
+        All Available Cars
+      </h2>
+      <div className="grid grid-cols-1 gap-5 lg:grid-cols-3">
+        {data?.data?.map((car: TCar) => (
+          <CarCard
+            key={car._id}
+            image={car.image}
+            title={car.name}
+            description={car.description}
+            price={car.pricePerHour}
+            _id={car._id}
+          />
+        ))}
+      </div>
     </div>
   );
 };
