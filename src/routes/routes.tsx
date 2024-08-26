@@ -1,4 +1,5 @@
 import App from "@/App";
+import AboutUs from "@/pages/AboutUs";
 import CarDetails from "@/pages/CarDetails";
 import Cars from "@/pages/Cars";
 import Error from "@/pages/Error";
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
       {
         path: "/car/:id",
         element: <CarDetails />,
+      },
+      {
+        path: "/about-us",
+        element: <AboutUs />,
       },
     ],
   },
