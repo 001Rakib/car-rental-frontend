@@ -32,8 +32,6 @@ const UserInfo = () => {
             <Input defaultValue={data?.data?.email} />
             <label htmlFor="">Password</label>
             <Input type="password" />
-            <label htmlFor="">Role</label>
-            <Input defaultValue={data?.data?.role} />
             <label htmlFor="">Address</label>
             <Input defaultValue={data?.data?.address} />
             <label htmlFor="">Phone Number</label>
