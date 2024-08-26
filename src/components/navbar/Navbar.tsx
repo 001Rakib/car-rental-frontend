@@ -1,14 +1,17 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { Button } from "../ui/button";
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
   DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
 import { useAppDispatch, useAppSelector } from "@/redux/hook";
 import { logout } from "@/redux/feature/auth/authSlice";
+import { CircleUser } from "lucide-react";
 
 const Navbar = () => {
   const { user } = useAppSelector((state) => state.auth);
@@ -88,9 +91,30 @@ const Navbar = () => {
         </div>
         <div>
           {user ? (
-            <Button onClick={handleLogout} className="bg-orange-200 text-black">
-              Logout
-            </Button>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button
+                  variant="secondary"
+                  size="icon"
+                  className="rounded-full"
+                >
+                  <CircleUser className="h-5 w-5" />
+                  <span className="sr-only">Toggle user menu</span>
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <Link to={"/user-dashboard"}>
+                  {" "}
+                  <DropdownMenuItem>Dashboard</DropdownMenuItem>
+                </Link>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem onClick={() => handleLogout()}>
+                  Logout
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           ) : (
             <NavLink to={"/login"}>
               <Button className="bg-orange-200 text-black">Login</Button>
@@ -167,12 +191,30 @@ const Navbar = () => {
         <div>
           <div>
             {user ? (
-              <Button
-                onClick={handleLogout}
-                className="bg-orange-200 text-black"
-              >
-                Logout
-              </Button>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button
+                    variant="secondary"
+                    size="icon"
+                    className="rounded-full"
+                  >
+                    <CircleUser className="h-5 w-5" />
+                    <span className="sr-only">Toggle user menu</span>
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end">
+                  <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+                  <Link to={"/user-dashboard"}>
+                    {" "}
+                    <DropdownMenuItem>Dashboard</DropdownMenuItem>
+                  </Link>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem onClick={() => handleLogout()}>
+                    Logout
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
             ) : (
               <NavLink to={"/login"}>
                 <Button className="bg-orange-200 text-black">Login</Button>

@@ -6,6 +6,9 @@ import Error from "@/pages/Error";
 import Home from "@/pages/Home";
 import Login from "@/pages/Login";
 import SignUp from "@/pages/SignUp";
+import UserBookings from "@/pages/UserBookings";
+import UserDashboard from "@/pages/UserDashboard";
+import UserInfo from "@/pages/UserInfo";
 import { createBrowserRouter } from "react-router-dom";
 
 const router = createBrowserRouter([
@@ -39,6 +42,20 @@ const router = createBrowserRouter([
   {
     path: "/signUp",
     element: <SignUp />,
+  },
+  {
+    path: "/user-dashboard",
+    element: <UserDashboard />,
+    children: [
+      {
+        path: "user-info",
+        element: <UserInfo />,
+      },
+      {
+        path: "user-booking",
+        element: <UserBookings />,
+      },
+    ],
   },
 ]);
 export default router;
