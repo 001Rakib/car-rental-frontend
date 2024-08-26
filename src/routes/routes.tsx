@@ -1,4 +1,5 @@
 import App from "@/App";
+import CarDetails from "@/pages/CarDetails";
 import Cars from "@/pages/Cars";
 import Home from "@/pages/Home";
 import Login from "@/pages/Login";
@@ -17,6 +18,10 @@ const router = createBrowserRouter([
       {
         path: "/cars",
         element: <Cars />,
+      },
+      {
+        path: "/car/:id",
+        element: <CarDetails />,
       },
     ],
   },

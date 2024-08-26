@@ -7,11 +7,11 @@ const FeaturedCars = () => {
 
   return (
     <div className="py-12">
-      <div className="max-w-screen-xl mx-auto p-4 pt-6 md:p-6 lg:p-12 xl:p-24">
+      <div className="max-w-screen-xl mx-auto">
         <h2 className="text-3xl text-orange-600 leading-tight font-bold mb-4 text-center">
           Featured Cars
         </h2>
-        <div className="grid grid-cols-3 gap-5 my-10">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 my-10">
           {data?.data?.slice(0, 3).map((car: TCar) => (
             <CarCard
               key={car._id}

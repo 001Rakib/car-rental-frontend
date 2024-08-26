@@ -1,0 +1,36 @@
+ 
+    {
+      id: 1,
+      name: 'John Doe',
+      rating: 5,
+      review:
+        'I rented a car from this company and it was a great experience. The car was clean and well-maintained, and the staff was friendly and helpful.',
+    },
+    {
+      id: 2,
+      name: 'Jane Smith',
+      rating: 4,
+      review:
+        'I was a bit skeptical at first, but the car rental process was smooth and easy. The car was comfortable and reliable, and the price was very competitive.',
+    },
+    {
+      id: 3,
+      name: 'Bob Johnson',
+      rating: 5,
+      review:
+        'I've rented cars from several companies before, but this one was by far the best. The staff was knowledgeable and friendly, and the car was in excellent condition.',
+    },
+    {
+      id: 4,
+      name: 'Maria Rodriguez',
+      rating: 4,
+      review:
+        'I rented a car for a week and it was a great experience. The car was clean and comfortable, and the staff was very helpful. I would definitely recommend this company to others.',
+    },
+    {
+      id: 5,
+      name: 'David Lee',
+      rating: 5,
+      review:
+        'I was very impressed with the service I received from this company. The staff was friendly and knowledgeable, and the car was in excellent condition. I would definitely rent from them again.',
+    },

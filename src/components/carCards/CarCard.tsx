@@ -38,8 +38,8 @@ const CarCard = ({ image, title, description, price, _id }: TCardProps) => {
           </CardHeader>
           <CardFooter>
             <div>
-              <Link to={`/products/${_id}`}>
-                <Button className="mt-2 border-blue-500" variant={"outline"}>
+              <Link to={`/car/${_id}`}>
+                <Button className="mt-2 border-orange-500" variant={"outline"}>
                   Details
                 </Button>
               </Link>
