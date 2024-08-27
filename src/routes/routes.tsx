@@ -1,5 +1,7 @@
 import App from "@/App";
 import AboutUs from "@/pages/AboutUs";
+import ManageCars from "@/pages/admin/ManageCars";
+import ManageUsers from "@/pages/admin/ManageUsers";
 import CarDetails from "@/pages/CarDetails";
 import Cars from "@/pages/Cars";
 import Error from "@/pages/Error";
@@ -77,6 +79,14 @@ const router = createBrowserRouter([
       {
         path: "admin-booking",
         element: <UserBookings />,
+      },
+      {
+        path: "manage-cars",
+        element: <ManageCars />,
+      },
+      {
+        path: "manage-users",
+        element: <ManageUsers />,
       },
     ],
   },

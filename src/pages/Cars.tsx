@@ -12,6 +12,7 @@ export type TCar = {
   isElectric: boolean;
   features: string[];
   pricePerHour: number;
+  status: string;
 };
 
 const Cars = () => {
