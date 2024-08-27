@@ -24,6 +24,7 @@ const bookingApi = baseApi.injectEndpoints({
           method: "GET",
         };
       },
+      providesTags: ["car"],
     }),
   }),
 });

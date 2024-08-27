@@ -31,10 +31,13 @@ import {
 } from "@/redux/feature/booking/booking.api";
 import { TBooking } from "@/types/global";
 import { useAppSelector } from "@/redux/hook";
+import ReturnCar from "@/components/returnCarModal/ReturnCar";
 const UserBookings = () => {
   let data;
   const { user } = useAppSelector((state) => state.auth);
-  const { data: userBookings, isLoading } = useGetMyBookingQuery(undefined);
+  const { data: userBookings, isLoading } = useGetMyBookingQuery({
+    skip: user?.role === "admin",
+  });
   const { data: allBookings, isLoading: allDataLoading } =
     useGetAllBookingQuery(undefined);
 
@@ -44,7 +47,6 @@ const UserBookings = () => {
   if (user?.role === "admin") {
     data = allBookings;
   }
-  console.log(data);
 
   if (isLoading || allDataLoading) {
     return (
@@ -129,7 +131,7 @@ const UserBookings = () => {
                         ) : booking?.totalCost ? (
                           "Car Returned"
                         ) : (
-                          <Button>Return Car</Button>
+                          <ReturnCar bookingId={booking._id} />
                         )}
                       </TableCell>
                       <TableCell>

@@ -32,12 +32,10 @@ const ManageUsers = () => {
   const { user } = useAppSelector((state) => state.auth);
 
   const { data: userData, isLoading } = useGetAllUserQuery(undefined);
-  console.log(userData);
 
   if (user?.role === "admin") {
     data = userData;
   }
-  console.log(data);
 
   if (isLoading) {
     return (

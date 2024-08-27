@@ -44,7 +44,6 @@ const ManageCars = () => {
   if (user?.role === "admin") {
     data = allBookings;
   }
-  console.log(data);
 
   if (isLoading || allDataLoading) {
     return (
