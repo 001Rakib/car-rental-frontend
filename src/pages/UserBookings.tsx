@@ -1,4 +1,4 @@
-import { MoreHorizontal } from "lucide-react";
+import { Loader2, MoreHorizontal } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
 
@@ -25,19 +25,49 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { useGetMyBookingQuery } from "@/redux/feature/booking/booking.api";
+import {
+  useGetAllBookingQuery,
+  useGetMyBookingQuery,
+} from "@/redux/feature/booking/booking.api";
 import { TBooking } from "@/types/global";
+import { useAppSelector } from "@/redux/hook";
 const UserBookings = () => {
-  const { data } = useGetMyBookingQuery(undefined);
+  let data;
+  const { user } = useAppSelector((state) => state.auth);
+  const { data: userBookings, isLoading } = useGetMyBookingQuery(undefined);
+  const { data: allBookings, isLoading: allDataLoading } =
+    useGetAllBookingQuery(undefined);
+
+  if (user?.role === "user") {
+    data = userBookings;
+  }
+  if (user?.role === "admin") {
+    data = allBookings;
+  }
   console.log(data);
+
+  if (isLoading || allDataLoading) {
+    return (
+      <div className="h-[100vh] max-w-screen-xl mx-auto text-center my-20">
+        <Button className="bg-orange-600" disabled>
+          <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+          Loading
+        </Button>
+      </div>
+    );
+  }
+
   return (
     <div className="flex min-h-screen w-full flex-col bg-muted/40">
       <div className="flex flex-col sm:gap-4 sm:py-4 sm:pl-14 lg:pl-0 lg:py-0">
         <main>
           <Card x-chunk="dashboard-06-chunk-0">
             <CardHeader>
-              <CardTitle>My Bookings</CardTitle>
-              <CardDescription>Manage your Booking</CardDescription>
+              <CardTitle>
+                {" "}
+                {user?.role === "admin" ? "Manage Booking" : "My Bookings"}{" "}
+              </CardTitle>
+              <CardDescription>Manage your Bookings</CardDescription>
             </CardHeader>
             <CardContent>
               <Table>
@@ -55,7 +85,7 @@ const UserBookings = () => {
                       Total Cost
                     </TableHead>
                     <TableHead className="hidden md:table-cell">
-                      Created at
+                      Payment
                     </TableHead>
                     <TableHead>
                       <span className="">Actions</span>
@@ -90,7 +120,17 @@ const UserBookings = () => {
                           : "Pending"}{" "}
                       </TableCell>
                       <TableCell className="hidden md:table-cell">
-                        2023-07-12 10:42 AM
+                        {user?.role === "user" ? (
+                          booking?.totalCost ? (
+                            <Button>Pay Now</Button>
+                          ) : (
+                            "You can Pay after car return"
+                          )
+                        ) : booking?.totalCost ? (
+                          "Car Returned"
+                        ) : (
+                          <Button>Return Car</Button>
+                        )}
                       </TableCell>
                       <TableCell>
                         <DropdownMenu>

@@ -68,7 +68,7 @@ const Navbar = () => {
             className={({ isActive }) =>
               isActive ? "bg-orange-200 text-black px-2 py-1 rounded-lg" : ""
             }
-            to={"/user-dashboard/user-booking"}
+            to={`/${user?.role}-dashboard/${user?.role}-booking`}
           >
             Booking
           </NavLink>
@@ -105,9 +105,12 @@ const Navbar = () => {
               <DropdownMenuContent align="end">
                 <DropdownMenuLabel>My Account</DropdownMenuLabel>
                 <DropdownMenuSeparator />
-                <Link to={"/user-dashboard/user-info"}>
+                <Link to={`/${user.role}-dashboard/${user.role}-info`}>
                   {" "}
-                  <DropdownMenuItem>Dashboard</DropdownMenuItem>
+                  <DropdownMenuItem className="capitalize">
+                    {" "}
+                    {user.role} Dashboard
+                  </DropdownMenuItem>
                 </Link>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem onClick={() => handleLogout()}>
@@ -152,7 +155,7 @@ const Navbar = () => {
               <NavLink to={"/cars"}>
                 <DropdownMenuCheckboxItem>Cars</DropdownMenuCheckboxItem>
               </NavLink>
-              <NavLink to={"/user-dashboard/user-booking"}>
+              <NavLink to={`/${user?.role}-dashboard/${user?.role}-booking`}>
                 <DropdownMenuCheckboxItem>Booking</DropdownMenuCheckboxItem>
               </NavLink>
               <NavLink to={"/contact"}>
@@ -205,7 +208,7 @@ const Navbar = () => {
                 <DropdownMenuContent align="end">
                   <DropdownMenuLabel>My Account</DropdownMenuLabel>
                   <DropdownMenuSeparator />
-                  <Link to={"/user-dashboard/user-info"}>
+                  <Link to={`/${user.role}-dashboard/${user.role}-info`}>
                     {" "}
                     <DropdownMenuItem>Dashboard</DropdownMenuItem>
                   </Link>

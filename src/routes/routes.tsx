@@ -5,6 +5,7 @@ import Cars from "@/pages/Cars";
 import Error from "@/pages/Error";
 import Home from "@/pages/Home";
 import Login from "@/pages/Login";
+import ProtectedRoute from "@/pages/ProtectedRoute";
 import SignUp from "@/pages/SignUp";
 import UserBookings from "@/pages/UserBookings";
 import UserDashboard from "@/pages/UserDashboard";
@@ -45,7 +46,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/user-dashboard",
-    element: <UserDashboard />,
+    element: (
+      <ProtectedRoute>
+        <UserDashboard />
+      </ProtectedRoute>
+    ),
     children: [
       {
         path: "user-info",
@@ -53,6 +58,24 @@ const router = createBrowserRouter([
       },
       {
         path: "user-booking",
+        element: <UserBookings />,
+      },
+    ],
+  },
+  {
+    path: "/admin-dashboard",
+    element: (
+      <ProtectedRoute>
+        <UserDashboard />
+      </ProtectedRoute>
+    ),
+    children: [
+      {
+        path: "admin-info",
+        element: <UserInfo />,
+      },
+      {
+        path: "admin-booking",
         element: <UserBookings />,
       },
     ],
