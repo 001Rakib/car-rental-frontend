@@ -25,27 +25,13 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import {
-  useGetAllBookingQuery,
-  useGetMyBookingQuery,
-} from "@/redux/feature/booking/booking.api";
-import { TBooking } from "@/types/global";
-import { useAppSelector } from "@/redux/hook";
+import { useGetAllCarsQuery } from "@/redux/feature/cars/car.api";
+import { TCar } from "../Cars";
+import { Link } from "react-router-dom";
 const ManageCars = () => {
-  let data;
-  const { user } = useAppSelector((state) => state.auth);
-  const { data: userBookings, isLoading } = useGetMyBookingQuery(undefined);
-  const { data: allBookings, isLoading: allDataLoading } =
-    useGetAllBookingQuery(undefined);
+  const { data, isLoading } = useGetAllCarsQuery(undefined);
 
-  if (user?.role === "user") {
-    data = userBookings;
-  }
-  if (user?.role === "admin") {
-    data = allBookings;
-  }
-
-  if (isLoading || allDataLoading) {
+  if (isLoading) {
     return (
       <div className="h-[100vh] max-w-screen-xl mx-auto text-center my-20">
         <Button className="bg-orange-600" disabled>
@@ -64,7 +50,12 @@ const ManageCars = () => {
             <CardHeader>
               <CardTitle>Manage All Cars</CardTitle>
               <CardDescription>Manage your Bookings</CardDescription>
-              <Button className="bg-orange-500">Add Car</Button>
+              <Link
+                className="w-full text-center"
+                to={"/admin-dashboard/add-car"}
+              >
+                <Button className="bg-orange-500">Add Car</Button>
+              </Link>
             </CardHeader>
             <CardContent>
               <Table>
@@ -85,35 +76,33 @@ const ManageCars = () => {
                   </TableRow>
                 </TableHeader>
                 <TableBody>
-                  {data?.data?.map((booking: TBooking) => (
-                    <TableRow key={booking._id}>
+                  {data?.data?.map((car: TCar) => (
+                    <TableRow key={car._id}>
                       <TableCell className="hidden sm:table-cell">
                         <img
                           alt="Product img"
                           className="aspect-square rounded-md object-cover"
                           height="64"
-                          src={booking?.carId?.image}
+                          src={car?.image}
                           width="64"
                         />
                       </TableCell>
-                      <TableCell className="font-medium">
-                        {booking?.carId?.name}
-                      </TableCell>
+                      <TableCell className="font-medium">{car?.name}</TableCell>
                       <TableCell>
                         <Badge
                           style={
-                            booking?.carId.status === "available"
+                            car?.status === "available"
                               ? { backgroundColor: "#86efac" }
                               : { backgroundColor: "#fb7185" }
                           }
                           variant="outline"
                         >
                           {" "}
-                          {booking?.carId.status}{" "}
+                          {car?.status}{" "}
                         </Badge>
                       </TableCell>
                       <TableCell className="hidden md:table-cell">
-                        ${booking?.carId?.pricePerHour}
+                        ${car?.pricePerHour}
                       </TableCell>
 
                       <TableCell>

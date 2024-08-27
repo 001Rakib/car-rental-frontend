@@ -1,5 +1,6 @@
 import App from "@/App";
 import AboutUs from "@/pages/AboutUs";
+import AddCar from "@/pages/admin/AddCar";
 import ManageCars from "@/pages/admin/ManageCars";
 import ManageUsers from "@/pages/admin/ManageUsers";
 import CarDetails from "@/pages/CarDetails";
@@ -87,6 +88,10 @@ const router = createBrowserRouter([
       {
         path: "manage-users",
         element: <ManageUsers />,
+      },
+      {
+        path: "add-car",
+        element: <AddCar />,
       },
     ],
   },
