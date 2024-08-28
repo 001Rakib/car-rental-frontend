@@ -25,11 +25,16 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { useGetAllCarsQuery } from "@/redux/feature/cars/car.api";
+import {
+  useDeleteCarMutation,
+  useGetAllCarsQuery,
+} from "@/redux/feature/cars/car.api";
 import { TCar } from "../Cars";
 import { Link } from "react-router-dom";
+import { toast } from "sonner";
 const ManageCars = () => {
   const { data, isLoading } = useGetAllCarsQuery(undefined);
+  const [deleteCar] = useDeleteCarMutation();
 
   if (isLoading) {
     return (
@@ -41,6 +46,14 @@ const ManageCars = () => {
       </div>
     );
   }
+
+  const handleDeleteCar = async (carId: string) => {
+    const res = await deleteCar(carId);
+
+    if (res?.data?.success) {
+      toast.success("Car Deleted Successfully", { position: "top-center" });
+    }
+  };
 
   return (
     <div className="flex min-h-screen w-full flex-col bg-muted/40">
@@ -122,7 +135,11 @@ const ManageCars = () => {
                             <Link to={`/admin-dashboard/update-car/${car._id}`}>
                               <DropdownMenuItem>Update Car</DropdownMenuItem>
                             </Link>
-                            <DropdownMenuItem>Delete</DropdownMenuItem>
+                            <DropdownMenuItem
+                              onClick={() => handleDeleteCar(car._id)}
+                            >
+                              Delete
+                            </DropdownMenuItem>
                           </DropdownMenuContent>
                         </DropdownMenu>
                       </TableCell>
