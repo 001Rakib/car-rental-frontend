@@ -51,9 +51,9 @@ const AddCar = () => {
     <div>
       <Card x-chunk="dashboard-04-chunk-1">
         <CardHeader>
-          <CardTitle>User Details</CardTitle>
+          <CardTitle>Add New Car</CardTitle>
           <CardDescription>
-            Edit your information otherwise leave it as it is!
+            Add new car information to add new car
           </CardDescription>
         </CardHeader>
         <form onSubmit={handleSubmit(handleAddCar)}>

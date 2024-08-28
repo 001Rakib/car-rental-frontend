@@ -119,7 +119,9 @@ const ManageCars = () => {
                           </DropdownMenuTrigger>
                           <DropdownMenuContent align="end">
                             <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                            <DropdownMenuItem>Update</DropdownMenuItem>
+                            <Link to={`/admin-dashboard/update-car/${car._id}`}>
+                              <DropdownMenuItem>Update Car</DropdownMenuItem>
+                            </Link>
                             <DropdownMenuItem>Delete</DropdownMenuItem>
                           </DropdownMenuContent>
                         </DropdownMenu>
