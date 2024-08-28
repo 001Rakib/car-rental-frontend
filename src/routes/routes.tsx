@@ -4,6 +4,7 @@ import AddCar from "@/pages/admin/AddCar";
 import ManageCars from "@/pages/admin/ManageCars";
 import ManageUsers from "@/pages/admin/ManageUsers";
 import UpdateCar from "@/pages/admin/UpdateCar";
+import BookNow from "@/pages/BookNow";
 import CarDetails from "@/pages/CarDetails";
 import Cars from "@/pages/Cars";
 import Error from "@/pages/Error";
@@ -47,6 +48,15 @@ const router = createBrowserRouter([
   {
     path: "/signUp",
     element: <SignUp />,
+  },
+  {
+    path: "/book-now/:carId",
+    element: (
+      <ProtectedRoute>
+        {" "}
+        <BookNow />{" "}
+      </ProtectedRoute>
+    ),
   },
   {
     path: "/user-dashboard",

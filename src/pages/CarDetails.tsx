@@ -3,7 +3,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { useGetSingleCarQuery } from "@/redux/feature/cars/car.api";
 import { SubmitHandler } from "react-hook-form";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 const CarDetails = () => {
   const { id } = useParams();
@@ -56,16 +56,30 @@ const CarDetails = () => {
               </Badge>
             </p>
             <p className="mt-2 font-medium text-slate-700">
+              Category: {data?.data?.category}
+            </p>
+            <p className={`mt-2 font-medium text-slate-700`}>
+              Color: {data?.data?.color}
+            </p>
+            <p className="mt-2 font-medium text-slate-700">
               Price Per Hour: ${data?.data?.pricePerHour}
             </p>
           </div>
           <div className="mt-4">
-            <Button
-              onClick={() => handleAddToCart(data?.data)}
-              className="bg-orange-600"
-            >
-              Book Now
-            </Button>
+            {data?.data?.status === "available" ? (
+              <Link to={`/book-now/${data?.data._id}`}>
+                <Button
+                  onClick={() => handleAddToCart(data?.data)}
+                  className="bg-orange-600"
+                >
+                  Book Now
+                </Button>
+              </Link>
+            ) : (
+              <Button disabled className="bg-orange-600">
+                Book Now
+              </Button>
+            )}
           </div>
         </div>
       </div>

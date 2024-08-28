@@ -2,12 +2,13 @@ import { baseApi } from "@/redux/api/baseApi";
 
 const bookingApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-    login: builder.mutation({
-      query: (userInfo) => ({
-        url: "/auth/signin",
+    bookNow: builder.mutation({
+      query: (data) => ({
+        url: "/bookings",
         method: "POST",
-        body: userInfo,
+        body: data,
       }),
+      invalidatesTags: ["booking"],
     }),
     getMyBooking: builder.query({
       query: () => {
@@ -16,6 +17,7 @@ const bookingApi = baseApi.injectEndpoints({
           method: "GET",
         };
       },
+      providesTags: ["booking"],
     }),
     getAllBooking: builder.query({
       query: () => {
@@ -24,9 +26,11 @@ const bookingApi = baseApi.injectEndpoints({
           method: "GET",
         };
       },
-      providesTags: ["car"],
     }),
   }),
 });
-export const { useLoginMutation, useGetMyBookingQuery, useGetAllBookingQuery } =
-  bookingApi;
+export const {
+  useBookNowMutation,
+  useGetMyBookingQuery,
+  useGetAllBookingQuery,
+} = bookingApi;
