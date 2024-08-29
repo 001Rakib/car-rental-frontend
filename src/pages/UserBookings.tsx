@@ -32,6 +32,7 @@ import {
 import { TBooking } from "@/types/global";
 import { useAppSelector } from "@/redux/hook";
 import ReturnCar from "@/components/returnCarModal/ReturnCar";
+import { Link } from "react-router-dom";
 const UserBookings = () => {
   let data;
   const { user } = useAppSelector((state) => state.auth);
@@ -124,7 +125,9 @@ const UserBookings = () => {
                       <TableCell className="hidden md:table-cell">
                         {user?.role === "user" ? (
                           booking?.totalCost ? (
-                            <Button>Pay Now</Button>
+                            <Link to={`/payment/${booking._id}`}>
+                              <Button>Pay Now</Button>
+                            </Link>
                           ) : (
                             "You can Pay after car return"
                           )

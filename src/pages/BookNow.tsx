@@ -9,7 +9,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "sonner";
 
 // // function for time picker
-function ClockIcon(props: any) {
+function ClockIcon(props: { className: string }) {
   return (
     <svg
       {...props}

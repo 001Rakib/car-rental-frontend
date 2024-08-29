@@ -6,6 +6,7 @@ import { useAppDispatch } from "@/redux/hook";
 import { verifyToken } from "@/utils/verifyToken";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
+import { toast } from "sonner";
 
 const Login = () => {
   const dispatch = useAppDispatch();
@@ -13,14 +14,21 @@ const Login = () => {
   const { register, handleSubmit } = useForm({
     defaultValues: { email: "user@example.com", password: "password123" },
   });
-  const [login, { error }] = useLoginMutation();
+
+  const [login] = useLoginMutation();
 
   const handleLogin: SubmitHandler<FieldValues> = async (data) => {
-    const res = await login(data).unwrap();
-    const user = verifyToken(res.data.token);
+    try {
+      const res = await login(data).unwrap();
+      const user = verifyToken(res.data.token);
 
-    dispatch(setUser({ user: user, token: res.data.token }));
-    navigate("/");
+      dispatch(setUser({ user: user, token: res.data.token }));
+      navigate("/");
+    } catch (err) {
+      if (err) {
+        toast.error("Invalid Email or Password", { position: "top-center" });
+      }
+    }
   };
 
   return (
@@ -33,11 +41,6 @@ const Login = () => {
               <p className="text-balance text-muted-foreground">
                 Enter your email below to login to your account
               </p>
-              {error ? (
-                <p className="text-red-500 font-xs">{error.data.message}</p>
-              ) : (
-                ""
-              )}
             </div>
             <div className="grid gap-4">
               <div className="grid gap-2">

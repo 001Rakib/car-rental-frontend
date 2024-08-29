@@ -2,7 +2,7 @@ import ImageMagnifier from "@/components/imageMagnifier/ImageMagnifier";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { useGetSingleCarQuery } from "@/redux/feature/cars/car.api";
-import { SubmitHandler } from "react-hook-form";
+import { FieldValues, SubmitHandler } from "react-hook-form";
 import { Link, useParams } from "react-router-dom";
 
 const CarDetails = () => {
@@ -10,7 +10,7 @@ const CarDetails = () => {
   const { data } = useGetSingleCarQuery(id);
   console.log(data);
 
-  const handleAddToCart: SubmitHandler<any> = (data) => {
+  const handleAddToCart: SubmitHandler<FieldValues> = (data) => {
     console.log(data);
   };
 

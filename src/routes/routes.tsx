@@ -10,6 +10,7 @@ import Cars from "@/pages/Cars";
 import Error from "@/pages/Error";
 import Home from "@/pages/Home";
 import Login from "@/pages/Login";
+import Payment from "@/pages/Payment";
 import ProtectedRoute from "@/pages/ProtectedRoute";
 import SignUp from "@/pages/SignUp";
 import UserBookings from "@/pages/UserBookings";
@@ -48,6 +49,10 @@ const router = createBrowserRouter([
   {
     path: "/signUp",
     element: <SignUp />,
+  },
+  {
+    path: "/payment/:bookingId",
+    element: <Payment />,
   },
   {
     path: "/book-now/:carId",
