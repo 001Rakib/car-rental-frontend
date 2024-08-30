@@ -13,7 +13,7 @@ const Payment = () => {
   const [payment] = usePaymentMutation();
   const { data: bookingData } = useGetMySingleBookingQuery(bookingId);
 
-  const handlePayment: SubmitErrorHandler<FieldValues> = (data) => {
+  const handlePayment: SubmitErrorHandler<FieldValues> = async (data) => {
     const paymentData = {
       name: data.name || bookingData?.data?.user?.name,
       email: data.email || bookingData?.data?.user?.email,
@@ -24,7 +24,10 @@ const Payment = () => {
       phone: Number(data.phone) || Number(bookingData?.data?.user?.phone),
     };
 
-    payment(paymentData);
+    const res = await payment(paymentData).unwrap();
+    if (res.success) {
+      window.location.href = res.data.payment_url;
+    }
   };
 
   return (

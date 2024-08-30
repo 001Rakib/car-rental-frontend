@@ -80,7 +80,6 @@ const UserBookings = () => {
                       <span className="">img</span>
                     </TableHead>
                     <TableHead>Name</TableHead>
-                    <TableHead>Status</TableHead>
                     <TableHead className="hidden md:table-cell">
                       Price Per Hour
                     </TableHead>
@@ -110,9 +109,7 @@ const UserBookings = () => {
                       <TableCell className="font-medium">
                         {booking?.carId?.name}
                       </TableCell>
-                      <TableCell>
-                        <Badge variant="outline">Draft</Badge>
-                      </TableCell>
+
                       <TableCell className="hidden md:table-cell">
                         ${booking?.carId?.pricePerHour}
                       </TableCell>
@@ -123,7 +120,11 @@ const UserBookings = () => {
                           : "Pending"}{" "}
                       </TableCell>
                       <TableCell className="hidden md:table-cell">
-                        {user?.role === "user" ? (
+                        {booking?.payment === "paid" ? (
+                          <Badge className="bg-orange-500 text-black">
+                            Paid
+                          </Badge>
+                        ) : user?.role === "user" ? (
                           booking?.totalCost ? (
                             <Link to={`/payment/${booking._id}`}>
                               <Button>Pay Now</Button>
@@ -131,8 +132,8 @@ const UserBookings = () => {
                           ) : (
                             "You can Pay after car return"
                           )
-                        ) : booking?.totalCost ? (
-                          "Car Returned"
+                        ) : booking?.payment === "paid" ? (
+                          "Paid"
                         ) : (
                           <ReturnCar bookingId={booking._id} />
                         )}

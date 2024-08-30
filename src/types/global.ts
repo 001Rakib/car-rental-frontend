@@ -13,6 +13,7 @@ export type TBooking = {
   startTime: string;
   endTime: string;
   totalCost: number;
+  payment: string;
 };
 export type TError = {
   data: {
