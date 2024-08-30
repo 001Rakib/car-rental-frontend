@@ -4,7 +4,6 @@ const carApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getAllCars: builder.query({
       query: (query?: TQueryProps) => {
-        console.log(query);
         if (query) {
           //sorting by price and searching
           if (query) {

@@ -36,12 +36,11 @@ import { Link } from "react-router-dom";
 const UserBookings = () => {
   let data;
   const { user } = useAppSelector((state) => state.auth);
-  const { data: userBookings, isLoading } = useGetMyBookingQuery({
-    name: "skip",
-    value: user?.role === "admin",
+  const { data: userBookings, isLoading } = useGetMyBookingQuery(undefined, {
+    skip: user?.role === "admin",
   });
   const { data: allBookings, isLoading: allDataLoading } =
-    useGetAllBookingQuery(undefined);
+    useGetAllBookingQuery(undefined, { skip: user?.role === "user" });
 
   if (user?.role === "user") {
     data = userBookings;
@@ -135,6 +134,8 @@ const UserBookings = () => {
                           )
                         ) : booking?.payment === "paid" ? (
                           "Paid"
+                        ) : booking.totalCost ? (
+                          "Returned"
                         ) : (
                           <ReturnCar bookingId={booking._id} />
                         )}

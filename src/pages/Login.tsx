@@ -11,9 +11,7 @@ import { toast } from "sonner";
 const Login = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const { register, handleSubmit } = useForm({
-    defaultValues: { email: "user@example.com", password: "password123" },
-  });
+  const { register, handleSubmit } = useForm();
 
   const [login] = useLoginMutation();
 

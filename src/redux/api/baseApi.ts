@@ -10,7 +10,7 @@ import { RootState } from "../store";
 import { logout, setUser } from "../feature/auth/authSlice";
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: "http://localhost:5000/api",
+  baseUrl: "https://car-rent-server-theta.vercel.app/api",
   credentials: "include",
   prepareHeaders: (headers, { getState }) => {
     const token = (getState() as RootState).auth.token;
@@ -30,10 +30,13 @@ const baseQueryWithRefreshToken: BaseQueryFn<
   let res = await baseQuery(args, api, extraOptions);
 
   if (res?.error?.status === 401) {
-    const result = await fetch("http://localhost:5000/api/auth/refresh-token", {
-      method: "POST",
-      credentials: "include",
-    });
+    const result = await fetch(
+      "https://car-rent-server-theta.vercel.app/api/auth/refresh-token",
+      {
+        method: "POST",
+        credentials: "include",
+      }
+    );
     const data = await result.json();
 
     if (data?.data?.accessToken) {

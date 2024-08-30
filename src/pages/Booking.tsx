@@ -18,7 +18,7 @@ const Booking = () => {
     setSearchCar(search);
   };
   const { data } = useGetAllCarsQuery({ searchCar });
-  console.log(data);
+
   return (
     <>
       <Navbar />
