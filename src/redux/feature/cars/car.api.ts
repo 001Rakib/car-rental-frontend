@@ -1,22 +1,22 @@
 import { baseApi } from "@/redux/api/baseApi";
-import { TQueryParam } from "@/types/global";
-
+type TQueryProps = { searchCar: string };
 const carApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getAllCars: builder.query({
-      query: (args) => {
-        const params = new URLSearchParams();
-
-        if (args) {
-          args.forEach((item: TQueryParam) => {
-            params.append(item.name, item.value as string);
-          });
+      query: (query?: TQueryProps) => {
+        console.log(query);
+        if (query) {
+          //sorting by price and searching
+          if (query) {
+            return {
+              method: "GET",
+              url: `/cars?searchCar=${query.searchCar}`,
+            };
+          }
         }
-
         return {
-          url: "/cars",
           method: "GET",
-          params: params,
+          url: `/cars`,
         };
       },
       providesTags: ["car"],

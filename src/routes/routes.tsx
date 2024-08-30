@@ -4,6 +4,7 @@ import AddCar from "@/pages/admin/AddCar";
 import ManageCars from "@/pages/admin/ManageCars";
 import ManageUsers from "@/pages/admin/ManageUsers";
 import UpdateCar from "@/pages/admin/UpdateCar";
+import Booking from "@/pages/Booking";
 import BookNow from "@/pages/BookNow";
 import CarDetails from "@/pages/CarDetails";
 import Cars from "@/pages/Cars";
@@ -53,6 +54,14 @@ const router = createBrowserRouter([
   {
     path: "/payment/:bookingId",
     element: <Payment />,
+  },
+  {
+    path: "booking",
+    element: (
+      <ProtectedRoute>
+        <Booking />
+      </ProtectedRoute>
+    ),
   },
   {
     path: "/book-now/:carId",

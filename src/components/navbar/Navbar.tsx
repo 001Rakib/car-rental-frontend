@@ -68,17 +68,9 @@ const Navbar = () => {
             className={({ isActive }) =>
               isActive ? "bg-orange-200 text-black px-2 py-1 rounded-lg" : ""
             }
-            to={`/${user?.role}-dashboard/${user?.role}-booking`}
+            to={`/booking`}
           >
             Booking
-          </NavLink>
-          <NavLink
-            className={({ isActive }) =>
-              isActive ? "bg-blue-200 text-black px-2 py-1 rounded-lg" : ""
-            }
-            to={"/contact"}
-          >
-            Contact
           </NavLink>
           <NavLink
             className={({ isActive }) =>
@@ -155,11 +147,8 @@ const Navbar = () => {
               <NavLink to={"/cars"}>
                 <DropdownMenuCheckboxItem>Cars</DropdownMenuCheckboxItem>
               </NavLink>
-              <NavLink to={`/${user?.role}-dashboard/${user?.role}-booking`}>
+              <NavLink to={`/booking`}>
                 <DropdownMenuCheckboxItem>Booking</DropdownMenuCheckboxItem>
-              </NavLink>
-              <NavLink to={"/contact"}>
-                <DropdownMenuCheckboxItem>Contact</DropdownMenuCheckboxItem>
               </NavLink>
               <NavLink to={"/about-us"}>
                 <DropdownMenuCheckboxItem>About Us</DropdownMenuCheckboxItem>

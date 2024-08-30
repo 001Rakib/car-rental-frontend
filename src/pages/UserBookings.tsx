@@ -37,7 +37,8 @@ const UserBookings = () => {
   let data;
   const { user } = useAppSelector((state) => state.auth);
   const { data: userBookings, isLoading } = useGetMyBookingQuery({
-    skip: user?.role === "admin",
+    name: "skip",
+    value: user?.role === "admin",
   });
   const { data: allBookings, isLoading: allDataLoading } =
     useGetAllBookingQuery(undefined);
