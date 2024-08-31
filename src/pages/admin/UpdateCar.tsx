@@ -44,7 +44,7 @@ const UpdateCar = () => {
       description: data.description || carData?.data?.color,
       color: data.color || carData?.data?.color,
       image: photoUrl || carData?.data?.image,
-      features: [data.features],
+      features: carData?.data.features || data.features,
       category: data.category || carData?.data?.category,
       pricePerHour:
         Number(data.pricePerHour) || Number(carData?.data?.pricePerHour),

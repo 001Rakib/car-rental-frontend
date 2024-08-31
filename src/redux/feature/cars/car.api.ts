@@ -33,7 +33,7 @@ const carApi = baseApi.injectEndpoints({
         method: "PUT",
         body: data,
       }),
-      invalidatesTags: ["car"],
+      invalidatesTags: ["car", "booking"],
     }),
     addCar: builder.mutation({
       query: (data) => ({
