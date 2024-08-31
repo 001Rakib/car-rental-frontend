@@ -37,8 +37,8 @@ const SignUp = () => {
   } = useForm({ resolver: zodResolver(signUpSchema) });
   const [signup] = useSignUpMutation();
   const handleSignUp: SubmitHandler<FieldValues> = async (data) => {
-    const res = await signup(data);
-    console.log(res);
+    await signup(data);
+
     navigate("/login");
   };
 

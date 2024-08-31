@@ -37,7 +37,6 @@ const BookNow = () => {
   const navigate = useNavigate();
 
   const handleBooking: SubmitHandler<FieldValues> = async (data) => {
-    console.log(data);
     const bookingInfo = {
       carId: carId,
       name: data.name,

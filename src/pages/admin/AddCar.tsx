@@ -20,7 +20,6 @@ const AddCar = () => {
   const [addCar] = useAddCarMutation();
 
   const handleAddCar: SubmitHandler<FieldValues> = async (data) => {
-    console.log(data);
     //upload image to imgbb
     const formData = new FormData();
     formData.append("image", data.image[0]);

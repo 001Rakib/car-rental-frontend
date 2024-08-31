@@ -2,17 +2,11 @@ import ImageMagnifier from "@/components/imageMagnifier/ImageMagnifier";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { useGetSingleCarQuery } from "@/redux/feature/cars/car.api";
-import { FieldValues, SubmitHandler } from "react-hook-form";
 import { Link, useParams } from "react-router-dom";
 
 const CarDetails = () => {
   const { id } = useParams();
   const { data } = useGetSingleCarQuery(id);
-  console.log(data);
-
-  const handleAddToCart: SubmitHandler<FieldValues> = (data) => {
-    console.log(data);
-  };
 
   return (
     <div className="max-w-screen-xl mx-auto md:mt-16 p-4 md:p-0">
@@ -68,12 +62,7 @@ const CarDetails = () => {
           <div className="mt-4">
             {data?.data?.status === "available" ? (
               <Link to={`/book-now/${data?.data._id}`}>
-                <Button
-                  onClick={() => handleAddToCart(data?.data)}
-                  className="bg-orange-600"
-                >
-                  Book Now
-                </Button>
+                <Button className="bg-orange-600">Book Now</Button>
               </Link>
             ) : (
               <Button disabled className="bg-orange-600">

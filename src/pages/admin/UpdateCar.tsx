@@ -13,6 +13,7 @@ import {
   useGetSingleCarQuery,
   useUpdateCarMutation,
 } from "@/redux/feature/cars/car.api";
+import { useState } from "react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { useParams } from "react-router-dom";
 import { toast } from "sonner";
@@ -24,22 +25,25 @@ const UpdateCar = () => {
   const { carId } = useParams();
   const { data: carData } = useGetSingleCarQuery(carId);
   const [updateCar] = useUpdateCarMutation();
+  const [photoUrl, setPhotoUrl] = useState("");
 
   const handleUpdateCar: SubmitHandler<FieldValues> = async (data) => {
     //upload image to imgbb
     const formData = new FormData();
     formData.append("image", data.image[0]);
-    const res = await fetch(imageHostingApi, {
+    fetch(imageHostingApi, {
       method: "POST",
       body: formData,
-    }).then((res) => res.json());
+    })
+      .then((res) => res.json())
+      .then((data) => setPhotoUrl(data.url));
 
     //save car data to mongoDB
     const updateCarData = {
       name: data.name || carData?.data.name,
       description: data.description || carData?.data?.color,
       color: data.color || carData?.data?.color,
-      image: res?.data?.url || carData?.data?.image,
+      image: photoUrl || carData?.data?.image,
       features: [data.features],
       category: data.category || carData?.data?.category,
       pricePerHour:
@@ -52,7 +56,7 @@ const UpdateCar = () => {
     };
 
     const result = await updateCar(carInfo);
-    console.log(result);
+
     if (result?.data?.success) {
       toast.success("Car Updated Successfully", { position: "top-center" });
       reset();

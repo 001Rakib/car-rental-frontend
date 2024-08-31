@@ -17,7 +17,6 @@ export type TCar = {
 
 const Cars = () => {
   const { data, isLoading } = useGetAllCarsQuery(undefined);
-  console.log(data);
 
   if (isLoading) {
     return (
